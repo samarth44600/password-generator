@@ -1,31 +1,37 @@
 import React from "react";
+import { useEffect, useState } from "react";
 
 //IMPORTING LOGIC
 import { generatePassword } from "../Utils/generatePassword";
 
-//IMPORTING ICONS
+//IMPORTING ICONS AND ELEMENTS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faSync } from "@fortawesome/free-solid-svg-icons";
 import Switch from "react-switch";
 import Slider from "react-input-slider";
 
-export default function Generator({
-  style,
-  length,
-  setLength,
-  charsCheck,
-  setCharsCheck,
-}: {
-  style: any;
-  length: any;
-  setLength: any;
-  charsCheck: any;
-  setCharsCheck: any;
-}) {
-  const handleChange = () => {
-    setCharsCheck(!charsCheck);
+export default function Generator({ style }: { style: any }) {
+  const [password, setPassword] = useState<string>("");
+  const [length, setLength] = useState<number>(12);
+  const [charsCheck, setCharsCheck] = useState<boolean>(true);
+
+  const generate = (): void => {
+    setPassword(generatePassword(length, charsCheck));
   };
-  const value: string = generatePassword(length, charsCheck);
+
+  const handleChange = (): void => {
+    setCharsCheck(!charsCheck);
+    generate();
+  };
+  const copyText = (): void => {
+    navigator.clipboard.writeText(password);
+  };
+
+  useEffect(() => {
+    generatePassword(length, charsCheck);
+  }, [length, charsCheck]);
+
+  console.log(length);
   return (
     //   MAIN DIV
     <div className={style.generatorMainDiv}>
@@ -36,10 +42,18 @@ export default function Generator({
 
       {/* DIV ELEMENT FOR  PASSWORD ,AND ICONS */}
       <div className={style.generatorDiv}>
-        <input defaultValue={value} />
+        <input value={password} />
 
-        <FontAwesomeIcon className={style.icons} icon={faSync} />
-        <FontAwesomeIcon className={style.icons} icon={faCopy} />
+        <FontAwesomeIcon
+          onClick={generate}
+          className={style.icons}
+          icon={faSync}
+        />
+        <FontAwesomeIcon
+          onClick={copyText}
+          className={style.icons}
+          icon={faCopy}
+        />
       </div>
 
       {/* DIV ELEMENT FOR SPECIAL CHARACTER TOGGLE */}
@@ -55,11 +69,15 @@ export default function Generator({
           x={length}
           xmax={20}
           xmin={6}
-          onChange={({ x }) => setLength(() => x)}
+          onChange={({ x }) => {
+            setLength(() => x);
+            generate();
+          }}
           // styling
           styles={{
             track: {
               backgroundColor: "grey",
+              height: 5,
             },
             active: {
               backgroundColor: "black",
