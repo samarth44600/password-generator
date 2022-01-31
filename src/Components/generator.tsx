@@ -21,7 +21,6 @@ export default function Generator({ style }: { style: any }) {
 
   const handleChange = (): void => {
     setCharsCheck(!charsCheck);
-    generate();
   };
   const copyText = (): void => {
     navigator.clipboard.writeText(password);
