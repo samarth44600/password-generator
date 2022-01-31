@@ -21,14 +21,17 @@ export default function Generator({ style }: { style: any }) {
 
   const handleChange = (): void => {
     setCharsCheck(!charsCheck);
-    generate();
   };
   const copyText = (): void => {
     navigator.clipboard.writeText(password);
   };
 
   useEffect(() => {
-    generatePassword(length, charsCheck);
+    generate();
+  }, []);
+
+  useEffect(() => {
+    generate();
   }, [length, charsCheck]);
 
   console.log(length);
@@ -42,7 +45,7 @@ export default function Generator({ style }: { style: any }) {
 
       {/* DIV ELEMENT FOR  PASSWORD ,AND ICONS */}
       <div className={style.generatorDiv}>
-        <input value={password} />
+        <input value={password} readOnly />
 
         <FontAwesomeIcon
           onClick={generate}
@@ -71,25 +74,24 @@ export default function Generator({ style }: { style: any }) {
           xmin={6}
           onChange={({ x }) => {
             setLength(() => x);
-            generate();
           }}
           // styling
           styles={{
             track: {
               backgroundColor: "grey",
-              height: 5,
+              height: 5
             },
             active: {
-              backgroundColor: "black",
+              backgroundColor: "black"
             },
             thumb: {
               width: 20,
               height: 20,
-              backgroundColor: "black",
+              backgroundColor: "black"
             },
             disabled: {
-              opacity: 0.5,
-            },
+              opacity: 0.5
+            }
           }}
         />
         <p>{length}</p>
