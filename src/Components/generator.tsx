@@ -34,7 +34,6 @@ export default function Generator({ style }: { style: any }) {
     generate();
   }, [length, charsCheck]);
 
-  console.log(length);
   return (
     //   MAIN DIV
     <div className={style.generatorMainDiv}>
@@ -63,7 +62,6 @@ export default function Generator({ style }: { style: any }) {
       <div className={style.specialCharsToggle}>
         <p>Special Character: </p>
         <Switch checked={charsCheck} onChange={handleChange} />
-        {console.log(charsCheck)}
       </div>
 
       <div className={style.slider}>
@@ -79,19 +77,19 @@ export default function Generator({ style }: { style: any }) {
           styles={{
             track: {
               backgroundColor: "grey",
-              height: 5
+              height: 5,
             },
             active: {
-              backgroundColor: "black"
+              backgroundColor: "black",
             },
             thumb: {
               width: 20,
               height: 20,
-              backgroundColor: "black"
+              backgroundColor: "black",
             },
             disabled: {
-              opacity: 0.5
-            }
+              opacity: 0.5,
+            },
           }}
         />
         <p>{length}</p>

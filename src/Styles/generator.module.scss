@@ -43,7 +43,6 @@
   }
 
   .specialCharsToggle {
-    // background-color: red;
     width: 25vw;
     display: flex;
     flex-direction: row;
@@ -59,7 +58,7 @@
     }
   }
   .slider {
-    width: 18vw;
+    // width: ;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -67,15 +66,9 @@
     padding: 5rem;
     padding-top: 0;
     > p {
+      padding-left: 1rem;
       font-size: 130%;
       font-family: "Montserrat", sans-serif;
     }
   }
 }
-
-// MOBILE STYLING
-// @media only screen and (min-width: 1180px) {
-//   .generatorDiv {
-//     width: 80vw;
-//   }
-// }
