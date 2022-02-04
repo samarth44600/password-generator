@@ -13,4 +13,5 @@ Simple password generator app created using React.
 
 ### Demo Video: 
 
-Uploading PassworGenerator(Trimmed).mp4…
+
+https://user-images.githubusercontent.com/71260220/152489211-06f434ff-390c-4cc2-b383-13604854d839.mp4
